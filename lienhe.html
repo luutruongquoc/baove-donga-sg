@@ -3,48 +3,609 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website đang trong quá trình phát triển</title>
+  <title>Liên Hệ - Đông Á SG - Dịch Vụ Bảo Vệ</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      margin: 0; 
-      padding: 0; 
-      background-color: #f5f5f5; 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: center; 
-      align-items: center; 
-      height: 100vh; 
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .navbar { background-color: #2E7D32; transition: all 0.3s ease; }
+    .navbar.shrink { padding-top: 5px; padding-bottom: 5px; }
+    .navbar-brand, .nav-link, .navbar-toggler-icon { color: white !important; }
+    .navbar .full-name { display: inline; white-space: normal; }
+    .navbar.shrink .full-name { display: none; }
+    .navbar .short-name { display: none; }
+    .navbar.shrink .short-name { display: inline; }
+    .navbar .logo { max-height: 80px; transition: max-height 0.3s ease; }
+    .navbar.shrink .logo { max-height: 0; overflow: hidden; }
+    @media (max-width: 991.98px) {
+      .navbar .full-name { display: block; font-size: 0.9rem; line-height: 1.2; }
+      .navbar-brand { flex-grow: 1; }
+      .navbar-toggler { margin-left: auto; }
+    }
+    .page-header { 
+      background: linear-gradient(135deg, #2E7D32, #4CAF50); 
+      color: white; 
+      padding: 120px 0 60px 0; 
+      text-align: center; 
+    }
+    .section-title { color: #2E7D32; font-weight: bold; margin-bottom: 30px; }
+    .highlight { color: #FFD600; font-weight: bold; }
+    .contact-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 40px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-align: center;
     }
-    h1 { color: #2E7D32; font-weight: bold; }
-    p { font-size: 1.2rem; color: #555; }
-    .spinner-border { color: #2E7D32; margin-top: 20px; }
-    .btn-home {
-      margin-top: 30px;
-      background-color: #2E7D32;
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .contact-icon {
+      font-size: 3rem;
+      color: #2E7D32;
+      margin-bottom: 20px;
+    }
+    .contact-form {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 40px;
+    }
+    .form-control {
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      transition: border-color 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: #2E7D32;
+      box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+    }
+    .btn-submit {
+      background: linear-gradient(135deg, #2E7D32, #4CAF50);
       color: white;
-      font-weight: bold;
-      padding: 10px 20px;
       border: none;
+      padding: 15px 40px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
+      color: white;
+    }
+    .map-container {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    .office-hours {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-left: 5px solid #2E7D32;
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+    .emergency-contact {
+      background: linear-gradient(135deg, #FFD600, #FFC107);
+      color: #C62828;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 20px rgba(255, 214, 0, 0.3);
+    }
+    .emergency-phone {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    footer { background-color: #2E7D32; color: white; padding: 20px 0; margin-top: 50px; }
+    .back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #FFD600;
+      color: #C62828;
+      padding: 8px 15px;
       border-radius: 5px;
       text-decoration: none;
+      font-weight: bold;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
-    .btn-home:hover {
-      background-color: #256428;
+    .back-to-top.show { opacity: 0.7; pointer-events: auto; }
+    .back-to-top:hover { opacity: 1; background-color: #e6c400; color: #C62828; }
+    .call-now-btn { 
+      background-color: #FFD600; 
+      color: #C62828; 
+      font-weight: bold; 
+      border: 2px solid #FFD600;
+      padding: 12px 30px;
+      border-radius: 25px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+    .call-now-btn:hover { 
+      background-color: #e6c400; 
+      color: #C62828; 
+      transform: scale(1.05);
+    }
+    .wrapper { max-width: 1200px; margin: 0 auto; }
+    .section-gray { background-color: #f8f9fa; padding: 60px 0; }
+    .section-white { background-color: #ffffff; padding: 60px 0; }
+    .breadcrumb {
+      background: transparent;
+      padding: 0;
+      margin-bottom: 0;
+    }
+    .breadcrumb-item a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+    }
+    .breadcrumb-item.active {
       color: white;
+    }
+    .social-links a {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background: #2E7D32;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      margin: 0 10px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .social-links a:hover {
+      background: #4CAF50;
+      transform: translateY(-3px);
+      color: white;
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+    .contact-info-item:hover {
+      background: #e9ecef;
+    }
+    .contact-info-icon {
+      width: 50px;
+      height: 50px;
+      background: #2E7D32;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
-  <div>
-    <h1>Website đang trong quá trình phát triển</h1>
-    <p>Chúng tôi đang hoàn thiện nội dung để mang đến cho bạn trải nghiệm tốt nhất. Vui lòng quay lại sau!</p>
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container wrapper">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="logo.png" alt="Logo Đông Á SG" class="logo me-2"> 
+        <span class="full-name">CÔNG TY TNHH DỊCH VỤ BẢO VỆ AN NINH ĐÔNG Á SG</span>
+        <span class="short-name">Đông Á SG</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới thiệu</a></li>
+          <li class="nav-item"><a class="nav-link" href="dichvu.html">Dịch vụ</a></li>
+          <li class="nav-item"><a class="nav-link" href="taisao.html">Tại sao chọn</a></li>
+          <li class="nav-item"><a class="nav-link active" href="lienhe.html">Liên hệ</a></li>
+        </ul>
+      </div>
     </div>
-    <a href="index.html" class="btn-home">Quay về trang chủ</a>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container wrapper">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb justify-content-center">
+          <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+          <li class="breadcrumb-item active">Liên hệ</li>
+        </ol>
+      </nav>
+      <h1 class="display-4 fw-bold mb-3">LIÊN HỆ VỚI CHÚNG TÔI</h1>
+      <p class="lead">Chúng tôi luôn sẵn sàng hỗ trợ và tư vấn cho bạn 24/7</p>
+      <a href="tel:0902431291" class="call-now-btn">
+        <i class="fas fa-phone me-2"></i>Hotline: 0902.431.291
+      </a>
+    </div>
   </div>
+
+  <!-- Emergency Contact -->
+  <div class="section-white">
+    <div class="container wrapper">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="emergency-contact">
+            <h3><i class="fas fa-exclamation-triangle me-2"></i>LIÊN HỆ KHẨN CẤP</h3>
+            <p class="mb-2">Gọi ngay khi cần hỗ trợ an ninh khẩn cấp</p>
+            <div class="emergency-phone">
+              <i class="fas fa-phone me-2"></i>0902.431.291
+            </div>
+            <p class="mb-0"><small>Phản hồi trong vòng 15 phút - Hoạt động 24/7</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Methods -->
+  <div class="section-gray">
+    <div class="container wrapper">
+      <div class="text-center mb-5">
+        <h2 class="section-title">THÔNG TIN LIÊN HỆ</h2>
+        <p class="lead">Nhiều cách để bạn có thể liên hệ với chúng tôi</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="contact-card">
+            <i class="fas fa-phone contact-icon"></i>
+            <h4>Điện Thoại</h4>
+            <p><strong>Hotline:</strong><br>0902.431.291</p>
+            <p><small class="text-muted">Hỗ trợ 24/7</small></p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="contact-card">
+            <i class="fas fa-envelope contact-icon"></i>
+            <h4>Email</h4>
+            <p><strong>Chính thức:</strong><br>baoveanninhdongasg@gmail.com</p>
+            <p><small class="text-muted">Phản hồi trong 2 giờ</small></p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="contact-card">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <h4>Địa Chỉ</h4>
+            <p><strong>Trụ sở:</strong><br>109/2/7 Trương Phước Phan<br>P. Bình Trị Đông, Q. Bình Tân, TP HCM</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="contact-card">
+            <i class="fas fa-clock contact-icon"></i>
+            <h4>Giờ Làm Việc</h4>
+            <p><strong>Văn phòng:</strong><br>T2-T6: 8:00 - 17:30<br>T7: 8:00 - 12:00</p>
+            <p><strong>Dịch vụ:</strong> 24/7</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form & Map -->
+  <div class="section-white">
+    <div class="container wrapper">
+      <div class="row">
+        <!-- Contact Form -->
+        <div class="col-lg-6 mb-4">
+          <div class="contact-form">
+            <h3 class="section-title">GỬI YÊU CẦU TƯ VẤN</h3>
+            <p class="text-muted mb-4">Điền thông tin bên dưới, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất</p>
+            
+            <form id="contactForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Họ và tên *" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="tel" class="form-control" placeholder="Số điện thoại *" required>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="email" class="form-control" placeholder="Email">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Công ty/Tổ chức">
+                </div>
+              </div>
+              
+              <select class="form-control">
+                <option value="">Chọn dịch vụ quan tâm</option>
+                <option value="vip">Bảo vệ yếu nhân & VIP</option>
+                <option value="event">Bảo vệ sự kiện & lễ hội</option>
+                <option value="fixed">Bảo vệ mục tiêu cố định</option>
+                <option value="mobile">Bảo vệ mục tiêu di động</option>
+                <option value="consulting">Tư vấn công tác bảo vệ</option>
+              </select>
+              
+              <textarea class="form-control" rows="4" placeholder="Mô tả chi tiết nhu cầu của bạn..."></textarea>
+              
+              <button type="submit" class="btn btn-submit">
+                <i class="fas fa-paper-plane me-2"></i>Gửi Yêu Cầu
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Company Info & Map -->
+        <div class="col-lg-6">
+          <!-- Map -->
+          <div class="map-container mb-4">
+            <h4 class="section-title">VỊ TRÍ TRÊN BẢN ĐỒ</h4>
+            <div style="width: 100%; height: 300px; background: #f8f9fa; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #666;">
+              <div class="text-center">
+                <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                <p><strong>109/2/7 Trương Phước Phan</strong><br>
+                P. Bình Trị Đông, Q. Bình Tân, TP HCM</p>
+                <a href="https://maps.google.com/?q=109/2/7+Trương+Phước+Phan,+Bình+Trị+Đông,+Bình+Tân,+TP+HCM" target="_blank" class="btn btn-outline-success">
+                  <i class="fas fa-directions me-2"></i>Xem chỉ đường
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Contact Info -->
+          <div class="contact-form">
+            <h4 class="section-title">THÔNG TIN CHI TIẾT</h4>
+            
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fas fa-building"></i>
+              </div>
+              <div>
+                <strong>Tên công ty:</strong><br>
+                Công ty TNHH Dịch Vụ Bảo Vệ An Ninh Đông Á SG
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fas fa-id-card"></i>
+              </div>
+              <div>
+                <strong>Mã số thuế:</strong> 0317751728<br>
+                <strong>Vốn điều lệ:</strong> 2 tỷ VNĐ
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <div>
+                <strong>Giấy phép:</strong> Cấp bởi Công an TP.HCM<br>
+                <strong>Chứng nhận:</strong> ISO 9001:2015
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div>
+                <strong>Quy mô:</strong> 1000+ nhân viên<br>
+                <strong>Kinh nghiệm:</strong> 5+ năm hoạt động
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Office Hours & Social -->
+  <div class="section-gray">
+    <div class="container wrapper">
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="office-hours">
+            <h4><i class="fas fa-clock text-success me-2"></i>GIỜ LÀM VIỆC</h4>
+            <div class="row">
+              <div class="col-6">
+                <p><strong>Thứ 2 - Thứ 6:</strong><br>8:00 - 17:30</p>
+                <p><strong>Thứ 7:</strong><br>8:00 - 12:00</p>
+              </div>
+              <div class="col-6">
+                <p><strong>Chủ nhật:</strong><br>Nghỉ (Chỉ khẩn cấp)</p>
+                <p><strong>Dịch vụ bảo vệ:</strong><br><span class="highlight">24/7 toàn năm</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+          <div class="contact-form">
+            <h4 class="section-title">KẾT NỐI VỚI CHÚNG TÔI</h4>
+            <p class="text-muted mb-4">Theo dõi chúng tôi trên các mạng xã hội để cập nhật thông tin mới nhất</p>
+            
+            <div class="social-links text-center">
+              <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" title="Zalo"><i class="fas fa-comment"></i></a>
+              <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+
+            <div class="mt-4 text-center">
+              <p class="mb-2"><strong>Hoặc gọi trực tiếp:</strong></p>
+              <a href="tel:0902431291" class="call-now-btn">
+                <i class="fas fa-phone me-2"></i>0902.431.291
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="section-white">
+    <div class="container wrapper">
+      <div class="text-center mb-5">
+        <h2 class="section-title">CÂU HỎI THƯỜNG GẶP</h2>
+        <p class="lead">Một số câu hỏi khách hàng thường quan tâm</p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                  Thời gian phản hồi yêu cầu tư vấn là bao lâu?
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Chúng tôi cam kết phản hồi trong vòng 15 phút đối với các yêu cầu khẩn cấp và trong vòng 2 giờ đối với các yêu cầu tư vấn thông thường trong giờ làm việc.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                  Chi phí dịch vụ bảo vệ được tính như thế nào?
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Chi phí được tính dựa trên loại dịch vụ, quy mô, thời gian và độ phức tạp của công việc. Chúng tôi sẽ khảo sát thực tế và đưa ra báo giá chi tiết, minh bạch.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                  Đông Á SG có cung cấp dịch vụ bảo vệ tạm thời không?
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Có, chúng tôi cung cấp cả dịch vụ bảo vệ dài hạn và tạm thời cho các sự kiện, hội nghị, triển lãm hoặc các nhu cầu đặc biệt khác.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                  Nhân viên bảo vệ có được đào tạo chuyên nghiệp không?
+                </button>
+              </h2>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Tất cả nhân viên đều được đào tạo bài bản, có chứng chỉ hành nghề và được cập nhật kiến thức thường xuyên. Chúng tôi có đội ngũ cựu sĩ quan và chuyên gia an ninh giàu kinh nghiệm.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container wrapper">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h5>Liên Hệ</h5>
+          <p><i class="fas fa-phone"></i> 0902.431.291</p>
+          <p><i class="fas fa-envelope"></i> baoveanninhdongasg@gmail.com</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5>Địa Chỉ</h5>
+          <p><i class="fas fa-map-marker-alt"></i> 109/2/7 Trương Phước Phan<br>
+          P. Bình Trị Đông, Q. Bình Tân, TP HCM</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5>Thông Tin</h5>
+          <p>MST: 0317751728</p>
+          <p>Vốn điều lệ: 2 tỷ VNĐ</p>
+        </div>
+      </div>
+      <hr class="my-4">
+      <p>&copy; 2025 Công ty TNHH Dịch Vụ Bảo Vệ An Ninh Đông Á SG. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    const navbar = document.querySelector('.navbar');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+
+      if (window.scrollY > 100) {
+        navbar.classList.add('shrink');
+      } else {
+        navbar.classList.remove('shrink');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Contact form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show success message
+      const submitBtn = this.querySelector('.btn-submit');
+      const originalText = submitBtn.innerHTML;
+      
+      submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Đã gửi thành công!';
+      submitBtn.style.background = '#28a745';
+      
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.style.background = '';
+        this.reset();
+      }, 3000);
+    });
+  </script>
 </body>
 </html>

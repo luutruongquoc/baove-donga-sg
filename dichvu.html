@@ -3,48 +3,451 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website đang trong quá trình phát triển</title>
+  <title>Dịch Vụ - Đông Á SG - Dịch Vụ Bảo Vệ</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      margin: 0; 
-      padding: 0; 
-      background-color: #f5f5f5; 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: center; 
-      align-items: center; 
-      height: 100vh; 
-      text-align: center;
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .navbar { background-color: #2E7D32; transition: all 0.3s ease; }
+    .navbar.shrink { padding-top: 5px; padding-bottom: 5px; }
+    .navbar-brand, .nav-link, .navbar-toggler-icon { color: white !important; }
+    .navbar .full-name { display: inline; white-space: normal; }
+    .navbar.shrink .full-name { display: none; }
+    .navbar .short-name { display: none; }
+    .navbar.shrink .short-name { display: inline; }
+    .navbar .logo { max-height: 80px; transition: max-height 0.3s ease; }
+    .navbar.shrink .logo { max-height: 0; overflow: hidden; }
+    @media (max-width: 991.98px) {
+      .navbar .full-name { display: block; font-size: 0.9rem; line-height: 1.2; }
+      .navbar-brand { flex-grow: 1; }
+      .navbar-toggler { margin-left: auto; }
     }
-    h1 { color: #2E7D32; font-weight: bold; }
-    p { font-size: 1.2rem; color: #555; }
-    .spinner-border { color: #2E7D32; margin-top: 20px; }
-    .btn-home {
-      margin-top: 30px;
-      background-color: #2E7D32;
-      color: white;
+    .page-header { 
+      background: linear-gradient(135deg, #2E7D32, #4CAF50); 
+      color: white; 
+      padding: 120px 0 60px 0; 
+      text-align: center; 
+    }
+    .section-title { color: #2E7D32; font-weight: bold; margin-bottom: 30px; }
+    .service-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 30px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    }
+    .service-icon {
+      font-size: 3rem;
+      color: #2E7D32;
+      margin-bottom: 20px;
+    }
+    .service-title {
+      color: #2E7D32;
       font-weight: bold;
-      padding: 10px 20px;
-      border: none;
+      margin-bottom: 15px;
+    }
+    .highlight { color: #FFD600; font-weight: bold; }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+    .feature-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+    .feature-list li i {
+      color: #2E7D32;
+      margin-right: 10px;
+    }
+    footer { background-color: #2E7D32; color: white; padding: 20px 0; margin-top: 50px; }
+    .back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #FFD600;
+      color: #C62828;
+      padding: 8px 15px;
       border-radius: 5px;
       text-decoration: none;
+      font-weight: bold;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
-    .btn-home:hover {
-      background-color: #256428;
+    .back-to-top.show { opacity: 0.7; pointer-events: auto; }
+    .back-to-top:hover { opacity: 1; background-color: #e6c400; color: #C62828; }
+    .call-now-btn { 
+      background-color: #FFD600; 
+      color: #C62828; 
+      font-weight: bold; 
+      border: 2px solid #FFD600;
+      padding: 12px 30px;
+      border-radius: 25px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+    .call-now-btn:hover { 
+      background-color: #e6c400; 
+      color: #C62828; 
+      transform: scale(1.05);
+    }
+    .wrapper { max-width: 1200px; margin: 0 auto; }
+    .section-gray { background-color: #f8f9fa; padding: 60px 0; }
+    .section-white { background-color: #ffffff; padding: 60px 0; }
+    .breadcrumb {
+      background: transparent;
+      padding: 0;
+      margin-bottom: 0;
+    }
+    .breadcrumb-item a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+    }
+    .breadcrumb-item.active {
       color: white;
+    }
+    .process-step {
+      text-align: center;
+      padding: 20px;
+    }
+    .process-number {
+      background: #2E7D32;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-weight: bold;
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
-  <div>
-    <h1>Website đang trong quá trình phát triển</h1>
-    <p>Chúng tôi đang hoàn thiện nội dung để mang đến cho bạn trải nghiệm tốt nhất. Vui lòng quay lại sau!</p>
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container wrapper">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="logo.png" alt="Logo Đông Á SG" class="logo me-2"> 
+        <span class="full-name">CÔNG TY TNHH DỊCH VỤ BẢO VỆ AN NINH ĐÔNG Á SG</span>
+        <span class="short-name">Đông Á SG</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link" href="gioithieu.html">Giới thiệu</a></li>
+          <li class="nav-item"><a class="nav-link active" href="dichvu.html">Dịch vụ</a></li>
+          <li class="nav-item"><a class="nav-link" href="taisao.html">Tại sao chọn</a></li>
+          <li class="nav-item"><a class="nav-link" href="lienhe.html">Liên hệ</a></li>
+        </ul>
+      </div>
     </div>
-    <a href="index.html" class="btn-home">Quay về trang chủ</a>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container wrapper">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb justify-content-center">
+          <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+          <li class="breadcrumb-item active">Dịch vụ</li>
+        </ol>
+      </nav>
+      <h1 class="display-4 fw-bold mb-3">DỊCH VỤ BẢO VỆ CHUYÊN NGHIỆP</h1>
+      <p class="lead">Giải pháp an ninh toàn diện cho mọi nhu cầu của bạn</p>
+      <a href="tel:0902431291" class="call-now-btn">
+        <i class="fas fa-phone me-2"></i>Tư vấn ngay: 0902.431.291
+      </a>
+    </div>
   </div>
+
+  <!-- Services Overview -->
+  <div class="section-white">
+    <div class="container wrapper">
+      <div class="text-center mb-5">
+        <h2 class="section-title">CÁC DỊCH VỤ CHÍNH</h2>
+        <p class="lead">Đông Á SG cung cấp đầy đủ các dịch vụ bảo vệ chuyên nghiệp với đội ngũ nhân viên được đào tạo bài bản</p>
+      </div>
+      
+      <div class="row">
+        <!-- Service 1: VIP Protection -->
+        <div class="col-lg-6 col-md-12">
+          <div class="service-card">
+            <div class="text-center">
+              <i class="fas fa-shield-alt service-icon"></i>
+            </div>
+            <h3 class="service-title">Bảo Vệ Yếu Nhân & VIP</h3>
+            <p>Dịch vụ bảo vệ cá nhân chuyên nghiệp cho các lãnh đạo, doanh nhân và những người có địa vị đặc biệt trong xã hội.</p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i>Nhân viên được đào tạo chuyên sâu về bảo vệ cá nhân</li>
+              <li><i class="fas fa-check"></i>Trang bị đầy đủ thiết bị liên lạc và bảo vệ</li>
+              <li><i class="fas fa-check"></i>Lập kế hoạch di chuyển an toàn</li>
+              <li><i class="fas fa-check"></i>Đánh giá và phân tích rủi ro trước</li>
+              <li><i class="fas fa-check"></i>Bảo mật thông tin tuyệt đối</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Service 2: Event Security -->
+        <div class="col-lg-6 col-md-12">
+          <div class="service-card">
+            <div class="text-center">
+              <i class="fas fa-calendar-alt service-icon"></i>
+            </div>
+            <h3 class="service-title">Bảo Vệ Sự Kiện & Lễ Hội</h3>
+            <p>Đảm bảo an ninh trật tự cho các sự kiện, hội nghị, triển lãm, lễ hội và các hoạt động quy mô lớn.</p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i>Lập phương án bảo vệ chi tiết</li>
+              <li><i class="fas fa-check"></i>Kiểm soát lối vào/ra và kiểm tra an ninh</li>
+              <li><i class="fas fa-check"></i>Đội ngũ bảo vệ có kinh nghiệm xử lý đám đông</li>
+              <li><i class="fas fa-check"></i>Phối hợp chặt chẽ với ban tổ chức</li>
+              <li><i class="fas fa-check"></i>Ứng phó nhanh chóng với tình huống khẩn cấp</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Service 3: Fixed Target Security -->
+        <div class="col-lg-6 col-md-12">
+          <div class="service-card">
+            <div class="text-center">
+              <i class="fas fa-building service-icon"></i>
+            </div>
+            <h3 class="service-title">Bảo Vệ Mục Tiêu Cố Định</h3>
+            <p>Bảo vệ các tòa nhà, ngân hàng, trường học, bệnh viện, khu công nghiệp và các cơ sở quan trọng khác.</p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i>Tuần tra và giám sát 24/7</li>
+              <li><i class="fas fa-check"></i>Kiểm soát ra vào nghiêm ngặt</li>
+              <li><i class="fas fa-check"></i>Hệ thống báo cáo định kỳ</li>
+              <li><i class="fas fa-check"></i>Phối hợp với hệ thống camera và báo động</li>
+              <li><i class="fas fa-check"></i>Xử lý tình huống khẩn cấp chuyên nghiệp</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Service 4: Mobile Security -->
+        <div class="col-lg-6 col-md-12">
+          <div class="service-card">
+            <div class="text-center">
+              <i class="fas fa-truck service-icon"></i>
+            </div>
+            <h3 class="service-title">Bảo Vệ Mục Tiêu Di Động</h3>
+            <p>Dịch vụ bảo vệ vận chuyển hàng hóa, tiền bạc, tài sản có giá trị và các mục tiêu di động khác.</p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i>Lộ trình vận chuyển được lập kế hoạch kỹ lưỡng</li>
+              <li><i class="fas fa-check"></i>Đội bảo vệ hộ tống chuyên nghiệp</li>
+              <li><i class="fas fa-check"></i>Liên lạc thường xuyên với trung tâm điều hành</li>
+              <li><i class="fas fa-check"></i>Phương tiện được trang bị đầy đủ thiết bị an ninh</li>
+              <li><i class="fas fa-check"></i>Bảo hiểm trách nhiệm nghề nghiệp</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Consulting Service -->
+  <div class="section-gray">
+    <div class="container wrapper">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h2 class="section-title">TƯ VẤN CÔNG TÁC BẢO VỆ</h2>
+          <p class="lead">Chúng tôi cung cấp dịch vụ tư vấn chuyên sâu để giúp bạn xây dựng hệ thống an ninh hiệu quả.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-lightbulb"></i>Đánh giá rủi ro an ninh toàn diện</li>
+            <li><i class="fas fa-lightbulb"></i>Thiết kế phương án bảo vệ tối ưu</li>
+            <li><i class="fas fa-lightbulb"></i>Tư vấn lựa chọn thiết bị an ninh</li>
+            <li><i class="fas fa-lightbulb"></i>Đào tạo nhân viên bảo vệ nội bộ</li>
+            <li><i class="fas fa-lightbulb"></i>Hỗ trợ xây dựng quy trình bảo vệ</li>
+            <li><i class="fas fa-lightbulb"></i>Kiểm tra và đánh giá định kỳ</li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <div class="text-center">
+            <i class="fas fa-users-cog" style="font-size: 8rem; color: #2E7D32; opacity: 0.7;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service Process -->
+  <div class="section-white">
+    <div class="container wrapper">
+      <div class="text-center mb-5">
+        <h2 class="section-title">QUY TRÌNH CUNG CẤP DỊCH VỤ</h2>
+        <p class="lead">Chúng tôi tuân thủ quy trình chuyên nghiệp để đảm bảo chất lượng dịch vụ tốt nhất</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="process-step">
+            <div class="process-number">1</div>
+            <h5>Tiếp Nhận Yêu Cầu</h5>
+            <p>Lắng nghe và ghi nhận đầy đủ nhu cầu của khách hàng</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="process-step">
+            <div class="process-number">2</div>
+            <h5>Khảo Sát Thực Địa</h5>
+            <p>Đánh giá tình hình thực tế và phân tích rủi ro</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="process-step">
+            <div class="process-number">3</div>
+            <h5>Lập Phương Án</h5>
+            <p>Thiết kế giải pháp bảo vệ phù hợp và báo giá chi tiết</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="process-step">
+            <div class="process-number">4</div>
+            <h5>Triển Khai Dịch Vụ</h5>
+            <p>Thực hiện dịch vụ theo đúng cam kết và giám sát chất lượng</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why Choose Us -->
+  <div class="section-gray">
+    <div class="container wrapper">
+      <div class="text-center mb-5">
+        <h2 class="section-title">TẠI SAO CHỌN DỊCH VỤ CỦA ĐÔNG Á SG?</h2>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="text-center">
+            <i class="fas fa-award" style="font-size: 3rem; color: #2E7D32; margin-bottom: 15px;"></i>
+            <h5 class="highlight">Uy Tín</h5>
+            <p>Nhiều năm kinh nghiệm trong lĩnh vực bảo vệ an ninh</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="text-center">
+            <i class="fas fa-user-graduate" style="font-size: 3rem; color: #2E7D32; margin-bottom: 15px;"></i>
+            <h5 class="highlight">Chuyên Nghiệp</h5>
+            <p>Đội ngũ được đào tạo bài bản và có chứng chỉ hành nghề</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="text-center">
+            <i class="fas fa-clock" style="font-size: 3rem; color: #2E7D32; margin-bottom: 15px;"></i>
+            <h5 class="highlight">24/7</h5>
+            <p>Sẵn sàng phục vụ khách hàng mọi lúc, mọi nơi</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="text-center">
+            <i class="fas fa-handshake" style="font-size: 3rem; color: #2E7D32; margin-bottom: 15px;"></i>
+            <h5 class="highlight">Cam Kết</h5>
+            <p>Đảm bảo chất lượng dịch vụ và hài lòng khách hàng</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact CTA -->
+  <div class="section-white">
+    <div class="container wrapper">
+      <div class="text-center">
+        <h2 class="section-title">BẠN CẦN TƯ VẤN DỊCH VỤ BẢO VỆ?</h2>
+        <p class="lead mb-4">Liên hệ ngay với chúng tôi để được tư vấn miễn phí và nhận báo giá tốt nhất</p>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <a href="tel:0902431291" class="btn btn-lg call-now-btn w-100">
+                  <i class="fas fa-phone me-2"></i>Gọi ngay: 0902.431.291
+                </a>
+              </div>
+              <div class="col-md-6 mb-3">
+                <a href="lienhe.html" class="btn btn-lg btn-outline-success w-100">
+                  <i class="fas fa-envelope me-2"></i>Gửi yêu cầu tư vấn
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container wrapper">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h5>Liên Hệ</h5>
+          <p><i class="fas fa-phone"></i> 0902.431.291</p>
+          <p><i class="fas fa-envelope"></i> baoveanninhdongasg@gmail.com</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5>Địa Chỉ</h5>
+          <p><i class="fas fa-map-marker-alt"></i> 109/2/7 Trương Phước Phan<br>
+          P. Bình Trị Đông, Q. Bình Tân, TP HCM</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5>Thông Tin</h5>
+          <p>MST: 0317751728</p>
+          <p>Vốn điều lệ: 2 tỷ VNĐ</p>
+        </div>
+      </div>
+      <hr class="my-4">
+      <p>&copy; 2025 Công ty TNHH Dịch Vụ Bảo Vệ An Ninh Đông Á SG. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    const navbar = document.querySelector('.navbar');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+
+      if (window.scrollY > 100) {
+        navbar.classList.add('shrink');
+      } else {
+        navbar.classList.remove('shrink');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+Số điện thoại trích xuất từ HSNL_ĐÔNG Á SG-FINAL-VIEW.pdf
+================================================================
+
+Danh sách số điện thoại tìm thấy:
+
+1. 0250806133
+2. 0297281801
+3. 0352950625
+4. 0352962288
+5. 0353076069
+6. 0599209878
+7. 0599229214
+8. 0926102721
+9. 296-4057-8461
+
+Tổng cộng: 9 số điện thoại
+
+Ghi chú:
+- Các số điện thoại được giữ nguyên định dạng như trong tài liệu gốc
+- Số điện thoại 296-4057-8461 có định dạng khác, có thể là số quốc tế hoặc số nội bộ
+- Các số điện thoại khác đều theo định dạng Việt Nam (10 chữ số bắt đầu bằng 02, 03, 05, 09)

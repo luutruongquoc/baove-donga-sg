@@ -18,10 +18,53 @@
     .navbar .logo { max-height: 80px; transition: max-height 0.3s ease; }
     .navbar.shrink .logo { max-height: 0; overflow: hidden; }
     /* Mobile Menu Items - Hidden on Desktop */
-    .mobile-menu-btn,
     .mobile-menu-overlay,
     .mobile-menu-sidebar {
       display: none;
+    }
+    
+    /* Mobile Menu Button - Always Visible */
+    .mobile-menu-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #2E7D32, #4CAF50);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      z-index: 1001;
+      box-shadow: 0 4px 20px rgba(46, 125, 50, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .mobile-menu-btn:hover {
+      transform: translateX(-50%) scale(1.1);
+      box-shadow: 0 6px 25px rgba(46, 125, 50, 0.6);
+    }
+    
+    .mobile-menu-btn.active {
+      background: #dc3545;
+    }
+    
+    /* Desktop specific styles for mobile menu button */
+    @media (min-width: 992px) {
+      .mobile-menu-btn {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+        bottom: 30px;
+        box-shadow: 0 6px 25px rgba(46, 125, 50, 0.5);
+      }
+      
+      .mobile-menu-btn:hover {
+        transform: translateX(-50%) scale(1.15);
+        box-shadow: 0 8px 30px rgba(46, 125, 50, 0.7);
+      }
     }
     
     /* Mobile Menu Styles */
@@ -31,37 +74,17 @@
       .navbar-toggler { display: none !important; }
       
       /* Show Mobile Menu Items on Mobile */
-      .mobile-menu-btn,
       .mobile-menu-overlay,
       .mobile-menu-sidebar {
         display: block;
       }
       
-      /* Mobile Menu Button */
+      /* Mobile specific adjustments */
       .mobile-menu-btn {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
         width: 60px;
         height: 60px;
-        background: linear-gradient(135deg, #2E7D32, #4CAF50);
-        border: none;
-        border-radius: 50%;
-        color: white;
         font-size: 1.5rem;
-        z-index: 1001;
-        box-shadow: 0 4px 20px rgba(46, 125, 50, 0.4);
-        transition: all 0.3s ease;
-      }
-      
-      .mobile-menu-btn:hover {
-        transform: translateX(-50%) scale(1.1);
-        box-shadow: 0 6px 25px rgba(46, 125, 50, 0.6);
-      }
-      
-      .mobile-menu-btn.active {
-        background: #dc3545;
+        bottom: 20px;
       }
       
       /* Mobile Menu Overlay */
@@ -94,6 +117,27 @@
         z-index: 1000;
         transition: right 0.3s ease;
         box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Desktop specific sidebar adjustments */
+      @media (min-width: 992px) {
+        .mobile-menu-sidebar {
+          width: 320px;
+          box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .mobile-menu-nav a {
+          padding: 18px 25px;
+          font-size: 1.1rem;
+        }
+        
+        .mobile-menu-header {
+          padding: 25px;
+        }
+        
+        .mobile-menu-logo img {
+          max-height: 60px;
+        }
       }
       
       .mobile-menu-sidebar.active {
@@ -994,7 +1038,7 @@
     </div>
   </div>
 
-  <button class="mobile-menu-btn d-lg-none" id="mobileMenuBtn">
+  <button class="mobile-menu-btn" id="mobileMenuBtn">
     <i class="fas fa-bars" id="mobileMenuIcon"></i>
   </button>
 

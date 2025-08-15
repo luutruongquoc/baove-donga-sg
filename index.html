@@ -169,7 +169,40 @@
     .carousel-container { margin-top: 96px; }
     .section-title { color: #2E7D32; font-weight: bold; margin-top: 20px; }
     .highlight { color: #FFD600; font-weight: bold; }
-    footer { background-color: #2E7D32; color: white; padding: 20px 0; margin-top: 0; position: relative; }
+    footer { 
+      background-color: #2E7D32; 
+      color: white; 
+      padding: 40px 0 20px; 
+      margin-top: 50px; 
+      position: relative; 
+    }
+    
+    footer h5 {
+      color: #FFD600;
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+    
+    footer p {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    
+    footer i {
+      color: #FFD600;
+      margin-right: 8px;
+      width: 16px;
+    }
+    
+    footer hr {
+      border-color: rgba(255, 255, 255, 0.2);
+      margin: 30px 0 20px;
+    }
+    
+    footer .row {
+      margin-bottom: 20px;
+    }
     .back-to-top {
       position: fixed;
       right: 20px;
@@ -474,6 +507,26 @@
       
       .hsnl-action {
         margin-top: 20px;
+      }
+      
+      /* Footer Mobile Responsiveness */
+      footer {
+        padding: 30px 0 20px;
+        margin-top: 30px;
+      }
+      
+      footer .row {
+        margin-bottom: 15px;
+      }
+      
+      footer h5 {
+        font-size: 1rem;
+        margin-bottom: 15px;
+      }
+      
+      footer p {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
       }
     }
   </style>
@@ -870,8 +923,28 @@
   </div>
 
   <!-- Footer -->
-  <footer class="text-center wrapper">
-    <p>&copy; 2025 Công ty TNHH Dịch Vụ Bảo Vệ An Ninh Đông Á SG. All rights reserved.</p>
+  <footer class="text-center">
+    <div class="container wrapper">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h5>Liên Hệ</h5>
+          <p><i class="fas fa-phone"></i> 0902.431.291</p>
+          <p><i class="fas fa-envelope"></i> baoveanninhdongasg@gmail.com</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5>Địa Chỉ</h5>
+          <p><i class="fas fa-map-marker-alt"></i> 109/2/7 Trương Phước Phan<br>
+          P. Bình Trị Đông, Q. Bình Tân, TP HCM</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5>Thông Tin</h5>
+          <p>MST: 0317751728</p>
+          <p>Vốn điều lệ: 2 tỷ VNĐ</p>
+        </div>
+      </div>
+      <hr class="my-4">
+      <p>&copy; 2025 Công ty TNHH Dịch Vụ Bảo Vệ An Ninh Đông Á SG. All rights reserved.</p>
+    </div>
   </footer>
 
   <!-- Mobile Menu -->

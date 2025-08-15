@@ -17,11 +17,25 @@
     .navbar.shrink .short-name { display: inline; }
     .navbar .logo { max-height: 80px; transition: max-height 0.3s ease; }
     .navbar.shrink .logo { max-height: 0; overflow: hidden; }
+    /* Mobile Menu Items - Hidden on Desktop */
+    .mobile-menu-btn,
+    .mobile-menu-overlay,
+    .mobile-menu-sidebar {
+      display: none;
+    }
+    
     /* Mobile Menu Styles */
     @media (max-width: 991.98px) {
       .navbar .full-name { display: block; font-size: 0.9rem; line-height: 1.2; }
       .navbar-brand { flex-grow: 1; }
       .navbar-toggler { display: none !important; }
+      
+      /* Show Mobile Menu Items on Mobile */
+      .mobile-menu-btn,
+      .mobile-menu-overlay,
+      .mobile-menu-sidebar {
+        display: block;
+      }
       
       /* Mobile Menu Button */
       .mobile-menu-btn {
